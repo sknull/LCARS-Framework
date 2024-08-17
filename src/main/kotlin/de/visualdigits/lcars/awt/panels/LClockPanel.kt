@@ -1,14 +1,14 @@
-package de.visualdigits.lcars.panels
+package de.visualdigits.lcars.awt.panels
 
-import de.visualdigits.lcars.LCARS
-import de.visualdigits.lcars.elements.LCARSAlarm
-import de.visualdigits.lcars.elements.LCARSButton
-import de.visualdigits.lcars.elements.LCARSCalendarPane
-import de.visualdigits.lcars.elements.LCARSCorner
-import de.visualdigits.lcars.elements.LCARSLabel
-import de.visualdigits.lcars.elements.LCARSPanel
-import de.visualdigits.lcars.elements.LCARSRectangle
-import de.visualdigits.lcars.elements.LCARSTime
+import de.visualdigits.lcars.awt.LCARS
+import de.visualdigits.lcars.awt.elements.LCARSAlarm
+import de.visualdigits.lcars.awt.elements.LCARSButton
+import de.visualdigits.lcars.awt.elements.LCARSCalendarPane
+import de.visualdigits.lcars.awt.elements.LCARSCorner
+import de.visualdigits.lcars.awt.elements.LCARSLabel
+import de.visualdigits.lcars.awt.elements.LCARSPanel
+import de.visualdigits.lcars.awt.elements.LCARSRectangle
+import de.visualdigits.lcars.awt.elements.LCARSTime
 import java.awt.event.ActionListener
 import java.util.TimeZone
 

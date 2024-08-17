@@ -1,8 +1,8 @@
-package de.visualdigits.lcars.panels
+package de.visualdigits.lcars.awt.panels
 
-import de.visualdigits.lcars.LCARS
-import de.visualdigits.lcars.elements.LCARSCorner
-import de.visualdigits.lcars.elements.LCARSPanel
+import de.visualdigits.lcars.awt.LCARS
+import de.visualdigits.lcars.awt.elements.LCARSCorner
+import de.visualdigits.lcars.awt.elements.LCARSPanel
 
 class LoginPanel : LCARSPanel() {
 

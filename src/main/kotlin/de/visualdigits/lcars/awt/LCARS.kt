@@ -1,4 +1,4 @@
-package de.visualdigits.lcars
+package de.visualdigits.lcars.awt
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

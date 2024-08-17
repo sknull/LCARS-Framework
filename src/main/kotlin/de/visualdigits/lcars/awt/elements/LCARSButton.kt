@@ -1,7 +1,7 @@
 /**
  *
  */
-package de.visualdigits.lcars.elements
+package de.visualdigits.lcars.awt.elements
 
 /**
  * @author Perry Spagnola

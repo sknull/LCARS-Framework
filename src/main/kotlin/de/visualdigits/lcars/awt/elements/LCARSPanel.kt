@@ -1,6 +1,6 @@
-package de.visualdigits.lcars.elements
+package de.visualdigits.lcars.awt.elements
 
-import de.visualdigits.lcars.LCARS
+import de.visualdigits.lcars.awt.LCARS
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.awt.Color

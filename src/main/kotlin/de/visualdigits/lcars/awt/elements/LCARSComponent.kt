@@ -1,6 +1,6 @@
-package de.visualdigits.lcars.elements
+package de.visualdigits.lcars.awt.elements
 
-import de.visualdigits.lcars.LCARS
+import de.visualdigits.lcars.awt.LCARS
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.awt.Color
@@ -32,18 +32,6 @@ abstract class LCARSComponent(
     var style: Int
 ) :
     JComponent(), MouseInputListener, ComponentListener {
-    /**
-     * Simple accessor method to get the component's displayable text.
-     *
-     * @return the displayed text of the component
-     */
-    /**
-     * Simple accessor method to set the component's displayed text. Set to `""`
-     * as a default for blank text
-     *
-     * @param text the text to be displayed on the component, cannot be null
-     */
-
 
     /**
      * Simple accessor method to get the x-axis inset for the component's displayed text.

@@ -1,10 +1,10 @@
-package de.visualdigits.lcars
+package de.visualdigits.lcars.awt
 
-import de.visualdigits.lcars.elements.LCARSButton
-import de.visualdigits.lcars.elements.LCARSCalendarPane
-import de.visualdigits.lcars.elements.LCARSCorner
-import de.visualdigits.lcars.elements.LCARSRectangle
-import de.visualdigits.lcars.elements.LCARSTime
+import de.visualdigits.lcars.awt.elements.LCARSButton
+import de.visualdigits.lcars.awt.elements.LCARSCalendarPane
+import de.visualdigits.lcars.awt.elements.LCARSCorner
+import de.visualdigits.lcars.awt.elements.LCARSRectangle
+import de.visualdigits.lcars.awt.elements.LCARSTime
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.awt.Color

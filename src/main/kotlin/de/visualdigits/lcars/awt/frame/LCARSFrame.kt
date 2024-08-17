@@ -1,8 +1,8 @@
-package de.visualdigits.lcars.frame
+package de.visualdigits.lcars.awt.frame
 
-import de.visualdigits.lcars.panels.LCARSApplicationPanel
-import de.visualdigits.lcars.panels.LMainPanel
-import de.visualdigits.lcars.panels.LoginPanel
+import de.visualdigits.lcars.awt.panels.LCARSApplicationPanel
+import de.visualdigits.lcars.awt.panels.LMainPanel
+import de.visualdigits.lcars.awt.panels.LoginPanel
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.event.ActionListener
