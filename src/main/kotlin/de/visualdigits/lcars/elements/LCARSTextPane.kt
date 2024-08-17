@@ -36,8 +36,8 @@ import javax.swing.text.ViewFactory
 open class LCARSTextPane(
     private var x: Int,
     private var y: Int,
-    private var w: Int,
-    private var h: Int,
+    protected var w: Int,
+    protected var h: Int,
     style: Int
 ) : JTextPane() {
     private var scaleFactor: Double = 0.0

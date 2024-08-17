@@ -18,7 +18,7 @@ import javax.swing.text.StyleConstants
 /**
  * @author Perry Spagnola
  */
-class LCARSCalendarPane : LCARSTextPane {
+class LCARSCalendarPane(x: Int, y: Int, style: Int) : LCARSTextPane(x, y, PANE_WIDTH, PANE_HEIGHT, style) {
     
     private var title: SimpleAttributeSet? = null
     private var weekday: SimpleAttributeSet? = null
@@ -35,33 +35,16 @@ class LCARSCalendarPane : LCARSTextPane {
 
     private var daysInMonth: Int = 0
 
-    private var dayToday: Int = 0
-
     private var timezone: TimeZone = Calendar.getInstance().getTimeZone()
 
 
-    constructor(x: Int, y: Int, style: Int) : super(x, y, PANE_WIDTH, PANE_HEIGHT, style) {
+    init {
         /**
          * Set the current date, the displayed month. The displayed month is the
          * current month.
          */
         setCurrentDate()
         setDisplayMonth(currentMonth, currentYear)
-
-        /**
-         * Initialize the calendar pane object.
-         */
-        init()
-    }
-
-
-    constructor(x: Int, y: Int, month: Int, year: Int, style: Int) : super(x, y, PANE_WIDTH, PANE_HEIGHT, style) {
-        /**
-         * Set the current date, the displayed month. The displayed month is
-         * specified by the month and year arguments.
-         */
-        setCurrentDate()
-        setDisplayMonth(month, year)
 
         /**
          * Initialize the calendar pane object.
@@ -131,7 +114,7 @@ class LCARSCalendarPane : LCARSTextPane {
             setCurrentDate()
             createCalendarDoc()
             setDisplayMonth(currentMonth, currentYear)
-            parent.repaint()
+            repaint()
         }
     }
 
@@ -320,7 +303,7 @@ class LCARSCalendarPane : LCARSTextPane {
 
         setDisplayMonth(month, year)
         createCalendarDoc()
-        parent.repaint()
+        repaint()
     }
 
 
@@ -337,14 +320,14 @@ class LCARSCalendarPane : LCARSTextPane {
 
         setDisplayMonth(month, year)
         createCalendarDoc()
-        parent.repaint()
+        repaint()
     }
 
 
     fun thisMonth() {
         setDisplayMonth(currentMonth, currentYear)
         createCalendarDoc()
-        parent.repaint()
+        repaint()
     }
 
     companion object {

@@ -39,7 +39,7 @@ class LCARSFrame : JFrame() {
          * Create action listeners for "Login" and Logout".
          */
         loginAction = ActionListener { login() }
-        loginPanel = LoginPanel(loginAction)
+        loginPanel = LoginPanel()
         loginPanel.preferredSize = Dimension(1920, 1080)
         //loginPanel.setPreferredSize(new Dimension(1680, 985));
         loginPanel.setTitle("Login Title")

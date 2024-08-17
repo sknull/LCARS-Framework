@@ -15,7 +15,7 @@ import java.util.TimerTask
 /**
  * @author Perry Spagnola
  */
-class LCARSTime : de.visualdigits.lcars.elements.LCARSLabel {
+class LCARSTime : LCARSLabel {
 
     private var format: SimpleDateFormat
 
@@ -26,14 +26,14 @@ class LCARSTime : de.visualdigits.lcars.elements.LCARSLabel {
      * @param style
      */
     constructor(x: Int, y: Int, style: Int) : super("00:00", x, y, style) {
-        format = de.visualdigits.lcars.elements.LCARSTime.Companion.formattedTime[de.visualdigits.lcars.elements.LCARSTime.Companion.DEFAULT]
+        format = formattedTime[DEFAULT]
 
         init()
     }
 
     private fun init() {
         componentText = format.format(Calendar.getInstance().time)
-        de.visualdigits.lcars.elements.LCARSTime.Companion.timeZone = Calendar.getInstance().getTimeZone()
+        timeZone = Calendar.getInstance().getTimeZone()
 
         val fm: FontMetrics = getFontMetrics(LCARSFont.deriveFont(fontSize))
         w = fm.stringWidth(componentText)
@@ -47,7 +47,7 @@ class LCARSTime : de.visualdigits.lcars.elements.LCARSLabel {
         //setForeground(LCARS.getLCARSColor(style));
         (Timer()).schedule(object : TimerTask() {
             override fun run() {
-                format.timeZone = de.visualdigits.lcars.elements.LCARSTime.Companion.timeZone
+                format.timeZone = timeZone
                 componentText = format.format(Calendar.getInstance().time)
                 repaint()
             }
@@ -58,13 +58,13 @@ class LCARSTime : de.visualdigits.lcars.elements.LCARSLabel {
     constructor(x: Int, y: Int, mode: Int, size: Int, style: Int) : super("00:00", x, y, style) {
         fontSize = size.toFloat()
 
-        format = de.visualdigits.lcars.elements.LCARSTime.Companion.formattedTime[mode]
+        format = formattedTime[mode]
 
         init()
     }
 
     fun setMode(mode: Int) {
-        format = de.visualdigits.lcars.elements.LCARSTime.Companion.formattedTime[mode]
+        format = formattedTime[mode]
     }
 
     companion object {
@@ -91,7 +91,7 @@ class LCARSTime : de.visualdigits.lcars.elements.LCARSLabel {
         var timeZone: TimeZone? = Calendar.getInstance().getTimeZone()
 
         fun setTimeZone(timezone: String? = null) {
-            de.visualdigits.lcars.elements.LCARSTime.Companion.timeZone = timezone?.let { TimeZone.getTimeZone(it) } ?: Calendar.getInstance().getTimeZone()
+            timeZone = timezone?.let { TimeZone.getTimeZone(it) } ?: Calendar.getInstance().getTimeZone()
         }
     }
 }

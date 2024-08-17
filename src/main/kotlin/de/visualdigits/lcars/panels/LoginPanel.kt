@@ -3,9 +3,9 @@ package de.visualdigits.lcars.panels
 import de.visualdigits.lcars.LCARS
 import de.visualdigits.lcars.elements.LCARSCorner
 import de.visualdigits.lcars.elements.LCARSPanel
-import java.awt.event.ActionListener
 
-class LoginPanel(loginAction: ActionListener?) : LCARSPanel() {
+class LoginPanel : LCARSPanel() {
+
     /**
      * @param parent
      * @param loginAction
@@ -34,7 +34,6 @@ class LoginPanel(loginAction: ActionListener?) : LCARSPanel() {
 
         //this.add(footerLeft);
     }
-
 
     companion object {
         /**

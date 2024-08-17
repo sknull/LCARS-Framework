@@ -11,6 +11,7 @@ open class LCARSLabel(
     y: Int,
     style: Int
 ) : LCARSComponent(text, x, y, 0, 0, style or LCARS.ES_STATIC) {
+
     /**
      * The constructor of the `LCARSLabel` class.
      *
@@ -59,7 +60,7 @@ open class LCARSLabel(
          * Set the component's foreground to the color derived from the LCARS style.
          */
         setForeground(LCARS.getLCARSColor(style))
-        setBackground(LCARSComponent.transparent)
+        setBackground(transparent)
     }
 
 

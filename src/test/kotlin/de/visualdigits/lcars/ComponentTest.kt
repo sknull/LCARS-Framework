@@ -32,13 +32,13 @@ object ComponentTest {
         panel.layout = null
         panel.background = Color.black
 
-        val lt = de.visualdigits.lcars.elements.LCARSTime(
-            500, 700, de.visualdigits.lcars.elements.LCARSTime.TIME, 100,
+        val lt = LCARSTime(
+            500, 700, LCARSTime.TIME, 100,
             LCARS.EF_TITLE or LCARS.EC_ORANGE or LCARS.ES_LABEL_C
         )
         panel.add(lt)
 
-        lt.setMode(de.visualdigits.lcars.elements.LCARSTime.DEFAULT)
+        lt.setMode(LCARSTime.DEFAULT)
 
         var lc = LCARSCorner(
             x = 10, y = 10, w = 1490,
@@ -87,28 +87,28 @@ object ComponentTest {
         lr = LCARSRectangle(x = 1100, y = 50, w = 200, h = 100, style = LCARS.ES_STATIC)
         panel.add(lr)
 
-        var lb = de.visualdigits.lcars.elements.LCARSButton(
+        var lb = LCARSButton(
             text = "Test Button", x = 200, y = 450,
             style = LCARS.EF_BUTTON or LCARS.ES_RECT_RND or LCARS.EC_ORANGE
         )
         lb.name = "Test Button"
         panel.add(lb)
 
-        lb = de.visualdigits.lcars.elements.LCARSButton(
+        lb = LCARSButton(
             text = "Test Button 2", x = 500, y = 450,
             style = LCARS.EF_BUTTON or LCARS.ES_RECT_RND_W or LCARS.EC_ORANGE
         )
         lb.name = "Test Button 2"
         panel.add(lb)
 
-        lb = de.visualdigits.lcars.elements.LCARSButton(
+        lb = LCARSButton(
             text = "Test Button 3", x = 800, y = 450,
             style = LCARS.EF_BUTTON or LCARS.ES_RECT_RND_E or LCARS.EC_ORANGE
         )
         lb.name = "Test Button 3"
         panel.add(lb)
 
-        lb = de.visualdigits.lcars.elements.LCARSButton(
+        lb = LCARSButton(
             text = "Test Button 4", x = 1100, y = 450,
             style = LCARS.EF_BUTTON or LCARS.EC_ORANGE
         )

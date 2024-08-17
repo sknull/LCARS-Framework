@@ -6,10 +6,10 @@ package de.visualdigits.lcars.elements
 /**
  * @author Perry Spagnola
  */
-class LCARSButton : de.visualdigits.lcars.elements.LCARSRectangle {
+class LCARSButton : LCARSRectangle {
     constructor(text: String?, x: Int, y: Int, style: Int) : super(x, y,
-        de.visualdigits.lcars.elements.LCARSButton.Companion.defaultWidth,
-        de.visualdigits.lcars.elements.LCARSButton.Companion.defaultHeight, style) {
+        defaultWidth,
+        defaultHeight, style) {
         init(text)
     }
 
