@@ -1,8 +1,8 @@
-package com.spagnola.lcars
+package de.visualdigits.lcars
 
-import com.spagnola.lcars.elements.LCARSPanel
-import com.spagnola.lcars.panels.LClockPanel
-import com.spagnola.lcars.panels.LoginPanel
+import de.visualdigits.lcars.elements.LCARSPanel
+import de.visualdigits.lcars.panels.LClockPanel
+import de.visualdigits.lcars.panels.LoginPanel
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.awt.Color

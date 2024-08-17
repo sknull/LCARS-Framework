@@ -1,6 +1,6 @@
-package com.spagnola.lcars.elements
+package de.visualdigits.lcars.elements
 
-import com.spagnola.lcars.LCARS
+import de.visualdigits.lcars.LCARS
 import java.awt.FontMetrics
 import java.awt.geom.Area
 import java.awt.geom.GeneralPath

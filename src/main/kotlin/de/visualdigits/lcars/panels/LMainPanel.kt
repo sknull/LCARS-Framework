@@ -1,4 +1,4 @@
-package com.spagnola.lcars.panels
+package de.visualdigits.lcars.panels
 
 import java.awt.event.ActionListener
 import javax.swing.JButton

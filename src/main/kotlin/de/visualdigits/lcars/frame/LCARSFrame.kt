@@ -1,8 +1,8 @@
-package com.spagnola.lcars.frame
+package de.visualdigits.lcars.frame
 
-import com.spagnola.lcars.panels.LCARSApplicationPanel
-import com.spagnola.lcars.panels.LMainPanel
-import com.spagnola.lcars.panels.LoginPanel
+import de.visualdigits.lcars.panels.LCARSApplicationPanel
+import de.visualdigits.lcars.panels.LMainPanel
+import de.visualdigits.lcars.panels.LoginPanel
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.event.ActionListener

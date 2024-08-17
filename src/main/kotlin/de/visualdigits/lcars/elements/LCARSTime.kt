@@ -1,10 +1,10 @@
 /**
  *
  */
-package com.spagnola.lcars.elements
+package de.visualdigits.lcars.elements
 
 
-import com.spagnola.lcars.LCARS
+import de.visualdigits.lcars.LCARS
 import java.awt.FontMetrics
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -15,7 +15,7 @@ import java.util.TimerTask
 /**
  * @author Perry Spagnola
  */
-class LCARSTime : LCARSLabel {
+class LCARSTime : de.visualdigits.lcars.elements.LCARSLabel {
 
     private var format: SimpleDateFormat
 
@@ -26,14 +26,14 @@ class LCARSTime : LCARSLabel {
      * @param style
      */
     constructor(x: Int, y: Int, style: Int) : super("00:00", x, y, style) {
-        format = formattedTime[DEFAULT]
+        format = de.visualdigits.lcars.elements.LCARSTime.Companion.formattedTime[de.visualdigits.lcars.elements.LCARSTime.Companion.DEFAULT]
 
         init()
     }
 
     private fun init() {
         componentText = format.format(Calendar.getInstance().time)
-        timeZone = Calendar.getInstance().getTimeZone()
+        de.visualdigits.lcars.elements.LCARSTime.Companion.timeZone = Calendar.getInstance().getTimeZone()
 
         val fm: FontMetrics = getFontMetrics(LCARSFont.deriveFont(fontSize))
         w = fm.stringWidth(componentText)
@@ -47,7 +47,7 @@ class LCARSTime : LCARSLabel {
         //setForeground(LCARS.getLCARSColor(style));
         (Timer()).schedule(object : TimerTask() {
             override fun run() {
-                format.timeZone = timeZone
+                format.timeZone = de.visualdigits.lcars.elements.LCARSTime.Companion.timeZone
                 componentText = format.format(Calendar.getInstance().time)
                 repaint()
             }
@@ -58,13 +58,13 @@ class LCARSTime : LCARSLabel {
     constructor(x: Int, y: Int, mode: Int, size: Int, style: Int) : super("00:00", x, y, style) {
         fontSize = size.toFloat()
 
-        format = formattedTime[mode]
+        format = de.visualdigits.lcars.elements.LCARSTime.Companion.formattedTime[mode]
 
         init()
     }
 
     fun setMode(mode: Int) {
-        format = formattedTime[mode]
+        format = de.visualdigits.lcars.elements.LCARSTime.Companion.formattedTime[mode]
     }
 
     companion object {
@@ -91,7 +91,7 @@ class LCARSTime : LCARSLabel {
         var timeZone: TimeZone? = Calendar.getInstance().getTimeZone()
 
         fun setTimeZone(timezone: String? = null) {
-            timeZone = timezone?.let { TimeZone.getTimeZone(it) } ?: Calendar.getInstance().getTimeZone()
+            de.visualdigits.lcars.elements.LCARSTime.Companion.timeZone = timezone?.let { TimeZone.getTimeZone(it) } ?: Calendar.getInstance().getTimeZone()
         }
     }
 }

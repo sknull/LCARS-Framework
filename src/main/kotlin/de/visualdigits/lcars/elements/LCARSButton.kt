@@ -1,13 +1,15 @@
 /**
  *
  */
-package com.spagnola.lcars.elements
+package de.visualdigits.lcars.elements
 
 /**
  * @author Perry Spagnola
  */
-class LCARSButton : LCARSRectangle {
-    constructor(text: String?, x: Int, y: Int, style: Int) : super(x, y, defaultWidth, defaultHeight, style) {
+class LCARSButton : de.visualdigits.lcars.elements.LCARSRectangle {
+    constructor(text: String?, x: Int, y: Int, style: Int) : super(x, y,
+        de.visualdigits.lcars.elements.LCARSButton.Companion.defaultWidth,
+        de.visualdigits.lcars.elements.LCARSButton.Companion.defaultHeight, style) {
         init(text)
     }
 

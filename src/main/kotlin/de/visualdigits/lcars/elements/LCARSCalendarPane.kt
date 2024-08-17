@@ -1,9 +1,9 @@
 /**
  *
  */
-package com.spagnola.lcars.elements
+package de.visualdigits.lcars.elements
 
-import com.spagnola.lcars.LCARS
+import de.visualdigits.lcars.LCARS
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.awt.Color

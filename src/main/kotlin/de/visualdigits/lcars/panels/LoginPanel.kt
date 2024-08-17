@@ -1,8 +1,8 @@
-package com.spagnola.lcars.panels
+package de.visualdigits.lcars.panels
 
-import com.spagnola.lcars.LCARS
-import com.spagnola.lcars.elements.LCARSCorner
-import com.spagnola.lcars.elements.LCARSPanel
+import de.visualdigits.lcars.LCARS
+import de.visualdigits.lcars.elements.LCARSCorner
+import de.visualdigits.lcars.elements.LCARSPanel
 import java.awt.event.ActionListener
 
 class LoginPanel(loginAction: ActionListener?) : LCARSPanel() {

@@ -1,27 +1,27 @@
-package com.spagnola.lcars.panels
+package de.visualdigits.lcars.panels
 
-import com.spagnola.lcars.LCARS
-import com.spagnola.lcars.elements.LCARSAlarm
-import com.spagnola.lcars.elements.LCARSButton
-import com.spagnola.lcars.elements.LCARSCalendarPane
-import com.spagnola.lcars.elements.LCARSCorner
-import com.spagnola.lcars.elements.LCARSLabel
-import com.spagnola.lcars.elements.LCARSPanel
-import com.spagnola.lcars.elements.LCARSRectangle
-import com.spagnola.lcars.elements.LCARSTime
+import de.visualdigits.lcars.LCARS
+import de.visualdigits.lcars.elements.LCARSAlarm
+import de.visualdigits.lcars.elements.LCARSButton
+import de.visualdigits.lcars.elements.LCARSCalendarPane
+import de.visualdigits.lcars.elements.LCARSCorner
+import de.visualdigits.lcars.elements.LCARSLabel
+import de.visualdigits.lcars.elements.LCARSPanel
+import de.visualdigits.lcars.elements.LCARSRectangle
+import de.visualdigits.lcars.elements.LCARSTime
 import java.awt.event.ActionListener
 import java.util.TimeZone
 
 class LClockPanel : LCARSPanel() {
 
-    private var time: LCARSTime
-    private var time24: LCARSTime
-    private var timeWithSeconds: LCARSTime
-    private var amPm: LCARSTime
-    private var date: LCARSTime
-    private var dayOfWeek: LCARSTime
-    private var seconds: LCARSTime
-    private var timeZone: LCARSTime
+    private var time: de.visualdigits.lcars.elements.LCARSTime
+    private var time24: de.visualdigits.lcars.elements.LCARSTime
+    private var timeWithSeconds: de.visualdigits.lcars.elements.LCARSTime
+    private var amPm: de.visualdigits.lcars.elements.LCARSTime
+    private var date: de.visualdigits.lcars.elements.LCARSTime
+    private var dayOfWeek: de.visualdigits.lcars.elements.LCARSTime
+    private var seconds: de.visualdigits.lcars.elements.LCARSTime
+    private var timeZone: de.visualdigits.lcars.elements.LCARSTime
     private var mode: Int = 1
     private var calendar: LCARSCalendarPane
 
@@ -73,17 +73,18 @@ class LClockPanel : LCARSPanel() {
         calendar = LCARSCalendarPane(200, 70, LCARS.EF_BODY)
         add(calendar)
 
-        var lb: LCARSButton = LCARSButton("Next", 10, 75, LCARS.EF_BUTTON or LCARS.EC_L_BLUE)
+        var lb: de.visualdigits.lcars.elements.LCARSButton =
+            de.visualdigits.lcars.elements.LCARSButton("Next", 10, 75, LCARS.EF_BUTTON or LCARS.EC_L_BLUE)
         lb.setName("Next Button")
         lb.actionListener = ActionListener { calendar.incrementMonth() }
         add(lb)
 
-        lb = LCARSButton("", 10, 140, LCARS.EF_BUTTON or LCARS.EC_L_BLUE)
+        lb = de.visualdigits.lcars.elements.LCARSButton("", 10, 140, LCARS.EF_BUTTON or LCARS.EC_L_BLUE)
         lb.setName("This Month Button")
         lb.actionListener = ActionListener { calendar.thisMonth() }
         add(lb)
 
-        lb = LCARSButton("Previous", 10, 205, LCARS.EF_BUTTON or LCARS.EC_L_BLUE)
+        lb = de.visualdigits.lcars.elements.LCARSButton("Previous", 10, 205, LCARS.EF_BUTTON or LCARS.EC_L_BLUE)
         lb.setName("Previous Button")
         lb.actionListener = ActionListener { calendar.decrementMonth() }
         add(lb)
@@ -128,10 +129,10 @@ class LClockPanel : LCARSPanel() {
          * Time fields including: basic time, AM/PM designation, seconds, day, date,
          * time zone, 24 hour basic time, and 24 hour time with seconds.
          */
-        timeWithSeconds = LCARSTime(
+        timeWithSeconds = de.visualdigits.lcars.elements.LCARSTime(
             725,
             450,
-            LCARSTime.DEFAULT,
+            de.visualdigits.lcars.elements.LCARSTime.DEFAULT,
             500,
             LCARS.EC_YELLOW or LCARS.ES_LABEL_NW
         )
@@ -139,54 +140,66 @@ class LClockPanel : LCARSPanel() {
         timeWithSeconds.isVisible = false
 
         time =
-            LCARSTime(725, 450, LCARSTime.TIME, 500, LCARS.EC_YELLOW or LCARS.ES_LABEL_NW)
+            de.visualdigits.lcars.elements.LCARSTime(
+                725,
+                450,
+                de.visualdigits.lcars.elements.LCARSTime.TIME,
+                500,
+                LCARS.EC_YELLOW or LCARS.ES_LABEL_NW
+            )
         add(time)
 
-        time24 = LCARSTime(
+        time24 = de.visualdigits.lcars.elements.LCARSTime(
             725,
             450,
-            LCARSTime.TIME_24,
+            de.visualdigits.lcars.elements.LCARSTime.TIME_24,
             500,
             LCARS.EC_YELLOW or LCARS.ES_LABEL_NW
         )
         add(time24)
         time24.isVisible = false
 
-        seconds = LCARSTime(
+        seconds = de.visualdigits.lcars.elements.LCARSTime(
             1600,
             450,
-            LCARSTime.SECONDS,
+            de.visualdigits.lcars.elements.LCARSTime.SECONDS,
             240,
             LCARS.EC_M_BLUE or LCARS.ES_LABEL_NW
         )
         add(seconds)
 
-        amPm = LCARSTime(
+        amPm = de.visualdigits.lcars.elements.LCARSTime(
             1600,
             685,
-            LCARSTime.AM_PM,
+            de.visualdigits.lcars.elements.LCARSTime.AM_PM,
             240,
             LCARS.EC_M_BLUE or LCARS.ES_LABEL_NW
         )
         add(amPm)
 
-        dayOfWeek = LCARSTime(
+        dayOfWeek = de.visualdigits.lcars.elements.LCARSTime(
             825,
             50,
-            LCARSTime.DAY_OF_WEEK,
+            de.visualdigits.lcars.elements.LCARSTime.DAY_OF_WEEK,
             175,
             LCARS.EC_YELLOW or LCARS.ES_LABEL_NW
         )
         add(dayOfWeek)
 
         date =
-            LCARSTime(825, 250, LCARSTime.DATE, 75, LCARS.EC_YELLOW or LCARS.ES_LABEL_NW)
+            de.visualdigits.lcars.elements.LCARSTime(
+                825,
+                250,
+                de.visualdigits.lcars.elements.LCARSTime.DATE,
+                75,
+                LCARS.EC_YELLOW or LCARS.ES_LABEL_NW
+            )
         add(date)
 
-        timeZone = LCARSTime(
+        timeZone = de.visualdigits.lcars.elements.LCARSTime(
             825,
             1000,
-            LCARSTime.TIME_ZONE,
+            de.visualdigits.lcars.elements.LCARSTime.TIME_ZONE,
             75,
             LCARS.EC_YELLOW or LCARS.ES_LABEL_NW
         )
@@ -195,7 +208,7 @@ class LClockPanel : LCARSPanel() {
         /**
          * Time Zone controls
          */
-        lb = LCARSButton(
+        lb = de.visualdigits.lcars.elements.LCARSButton(
             "Previous", 1480, 1000,
             LCARS.ES_LABEL_C or LCARS.ES_RECT_RND_W or LCARS.EF_BUTTON or LCARS.EC_M_BLUE
         )
@@ -203,15 +216,15 @@ class LClockPanel : LCARSPanel() {
         lb.actionListener = ActionListener { decrementTimeZone() }
         add(lb)
 
-        lb = LCARSButton(
-            "TIME ZONE", 1635, 1000, 100, LCARSButton.defaultHeight,
+        lb = de.visualdigits.lcars.elements.LCARSButton(
+            "TIME ZONE", 1635, 1000, 100, de.visualdigits.lcars.elements.LCARSButton.defaultHeight,
             LCARS.ES_LABEL_C or LCARS.EF_BUTTON or LCARS.EC_M_BLUE
         )
         lb.setName("This Time Zone")
         lb.actionListener = ActionListener { setLocalTimeZone() }
         add(lb)
 
-        lb = LCARSButton(
+        lb = de.visualdigits.lcars.elements.LCARSButton(
             "Next", 1740, 1000,
             LCARS.ES_LABEL_C or LCARS.ES_RECT_RND_E or LCARS.EF_BUTTON or LCARS.EC_M_BLUE
         )
@@ -223,7 +236,7 @@ class LClockPanel : LCARSPanel() {
         /**
          * Alarm controls
          */
-        lb = LCARSButton(
+        lb = de.visualdigits.lcars.elements.LCARSButton(
             "Alarm On", 10, 460,
             LCARS.EF_BUTTON or LCARS.EC_ORANGE
         )
@@ -231,7 +244,7 @@ class LClockPanel : LCARSPanel() {
         lb.actionListener = ActionListener { alarm.on() }
         add(lb)
 
-        lb = LCARSButton(
+        lb = de.visualdigits.lcars.elements.LCARSButton(
             "Alarm Off", 10, 525,
             LCARS.EF_BUTTON or LCARS.EC_ORANGE
         )
@@ -239,8 +252,8 @@ class LClockPanel : LCARSPanel() {
         lb.actionListener = ActionListener { alarm.off() }
         add(lb)
 
-        lb = LCARSButton(
-            "Snooze", 10, 590, LCARSButton.defaultWidth, 340,
+        lb = de.visualdigits.lcars.elements.LCARSButton(
+            "Snooze", 10, 590, de.visualdigits.lcars.elements.LCARSButton.defaultWidth, 340,
             LCARS.ES_LABEL_C or LCARS.EF_BUTTON or LCARS.EC_ORANGE
         )
         lb.setName("Snooze")
@@ -250,21 +263,21 @@ class LClockPanel : LCARSPanel() {
         add(alarm)
 
 
-        lb = LCARSButton(
+        lb = de.visualdigits.lcars.elements.LCARSButton(
             "12 / 24", 450, 670,
             LCARS.ES_RECT_RND_E or LCARS.EF_BUTTON or LCARS.EC_ORANGE
         )
         lb.actionListener = ActionListener { alarm?.toggleMode() }
         add(lb)
 
-        lb = LCARSButton(
+        lb = de.visualdigits.lcars.elements.LCARSButton(
             "Hours +", 450, 735,
             LCARS.ES_RECT_RND_E or LCARS.EF_BUTTON or LCARS.EC_ORANGE
         )
         lb.actionListener = ActionListener { alarm?.incrementAlarmHour() }
         add(lb)
 
-        lb = LCARSButton(
+        lb = de.visualdigits.lcars.elements.LCARSButton(
             "Minutes +", 450, 800,
             LCARS.ES_RECT_RND_E or LCARS.EF_BUTTON or LCARS.EC_ORANGE
         )
@@ -272,14 +285,14 @@ class LClockPanel : LCARSPanel() {
         add(lb)
 
 
-        lb = LCARSButton(
+        lb = de.visualdigits.lcars.elements.LCARSButton(
             "Hours --", 200, 735,
             LCARS.ES_RECT_RND_W or LCARS.EF_BUTTON or LCARS.EC_ORANGE
         )
         lb.actionListener = ActionListener { alarm?.decrementAlarmHour() }
         add(lb)
 
-        lb = LCARSButton(
+        lb = de.visualdigits.lcars.elements.LCARSButton(
             "Minutes --", 200, 800,
             LCARS.ES_RECT_RND_W or LCARS.EF_BUTTON or LCARS.EC_ORANGE
         )
@@ -290,7 +303,7 @@ class LClockPanel : LCARSPanel() {
         /**
          * Time mode select control
          */
-        lb = LCARSButton(
+        lb = de.visualdigits.lcars.elements.LCARSButton(
             "Mode Select", 10, 935,
             LCARS.EF_BUTTON or LCARS.EC_YELLOW
         )
@@ -302,7 +315,7 @@ class LClockPanel : LCARSPanel() {
         /**
          * Panel exit control
          */
-        lb = LCARSButton(
+        lb = de.visualdigits.lcars.elements.LCARSButton(
             "Exit", 10, 1000,
             LCARS.EF_BUTTON or LCARS.EC_ORANGE
         )
@@ -313,35 +326,35 @@ class LClockPanel : LCARSPanel() {
 
 
     fun incrementTimeZone() {
-        val _tz: TimeZone = LCARSTime.timeZone!!
+        val _tz: TimeZone = de.visualdigits.lcars.elements.LCARSTime.timeZone!!
 
         val rawOffset: Int = _tz.rawOffset
 
         val tzid: Array<String?> = TimeZone.getAvailableIDs(rawOffset + LCARS.MILISECS_IN_HOUR)
 
         if (tzid[0] != null) {
-            LCARSTime.setTimeZone(tzid[0])
+            de.visualdigits.lcars.elements.LCARSTime.setTimeZone(tzid[0])
             calendar.setTimeZone(tzid[0])
         }
     }
 
 
     fun decrementTimeZone() {
-        val _tz: TimeZone = LCARSTime.timeZone!!
+        val _tz: TimeZone = de.visualdigits.lcars.elements.LCARSTime.timeZone!!
 
         val rawOffset: Int = _tz.rawOffset
 
         val tzid: Array<String?> = TimeZone.getAvailableIDs(rawOffset - LCARS.MILISECS_IN_HOUR)
 
         if (tzid[0] != null) {
-            LCARSTime.setTimeZone(tzid[0])
+            de.visualdigits.lcars.elements.LCARSTime.setTimeZone(tzid[0])
             calendar.setTimeZone(tzid[0])
         }
     }
 
 
     fun setLocalTimeZone() {
-        LCARSTime.setTimeZone()
+        de.visualdigits.lcars.elements.LCARSTime.setTimeZone()
         calendar.setTimeZone()
     }
 
