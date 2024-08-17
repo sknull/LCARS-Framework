@@ -59,7 +59,8 @@ public abstract class LCARSPanel extends JPanel {
     protected void exit() {
         LOGGER.info("exit action invoked...");
         this.setVisible(false);
-        getParent().setVisible(true);
+        getParent().setVisible(false);
+        System.exit(0);
     }
 
 

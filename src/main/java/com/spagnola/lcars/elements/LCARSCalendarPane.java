@@ -85,7 +85,6 @@ public class LCARSCalendarPane extends LCARSTextPane {
     protected int dayToday = 0;
 
     protected TimeZone timezone = Calendar.getInstance().getTimeZone();
-    ;
 
 
     public LCARSCalendarPane(int x, int y, int style) {
@@ -175,11 +174,7 @@ public class LCARSCalendarPane extends LCARSTextPane {
     public boolean isWeekday(int day) {
         int _day = dayOfWeek(displayMonth, day, displayYear);
 
-        if (_day > 0 && _day < 6) {
-            return true;
-        } else {
-            return false;
-        }
+        return _day > 0 && _day < 6;
     }
 
     /**
@@ -293,37 +288,21 @@ public class LCARSCalendarPane extends LCARSTextPane {
     public boolean isSunday(int day) {
         int _day = dayOfWeek(displayMonth, day, displayYear);
 
-        if (_day == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return _day == 0;
     }
 
     public boolean isSaturday(int day) {
         int _day = dayOfWeek(displayMonth, day, displayYear);
 
-        if (_day == 6) {
-            return true;
-        } else {
-            return false;
-        }
+        return _day == 6;
     }
 
     public boolean isToday(int day) {
-        if (displayYear == currentYear && displayMonth == currentMonth && day == currentDay) {
-            return true;
-        } else {
-            return false;
-        }
+        return displayYear == currentYear && displayMonth == currentMonth && day == currentDay;
     }
 
     protected boolean dateHasChanged() {
-        if (getCurrentDay() != currentDay || getCurrentMonth() != currentMonth) {
-            return true;
-        } else {
-            return false;
-        }
+        return getCurrentDay() != currentDay || getCurrentMonth() != currentMonth;
     }
 
     protected int getCurrentDay() {
@@ -385,15 +364,12 @@ public class LCARSCalendarPane extends LCARSTextPane {
         /**
          * If the current year is evenly divisible by 400, return true.
          */
-        if (displayYear % 400 == 0) {
-            return true;
-        }
+        return displayYear % 400 == 0;
 
         /**
          * If none of the leap year conditions is met, method falls through,
          * and returns false.
          */
-        return false;
     }
 
     public void setTimeZone(String timezoneID) {

@@ -28,7 +28,7 @@ public class LCARSTime extends LCARSLabel {
     public static final int TIME = 6;
     public static final int SECONDS = 7;
     public static final int TIME_24 = 8;
-    protected static final SimpleDateFormat formattedTime[] = {
+    protected static final SimpleDateFormat[] formattedTime = {
             new SimpleDateFormat("HH:mm:ss"),
             new SimpleDateFormat("EEEE"),
             new SimpleDateFormat("a"),

@@ -79,7 +79,7 @@ public class LCARS {
     public static final int EC_ORANGE = 0x00001800;
     public static final int EC_RED = 0x00001C00;
 
-    public static final Color COLORS_BG[] = {
+    public static final Color[] COLORS_BG = {
             new Color(0xCC, 0xDD, 0xFF),
             new Color(0x55, 0x99, 0xFF),
             new Color(0x33, 0x66, 0xFF),
@@ -245,11 +245,7 @@ public class LCARS {
     }
 
     public static boolean isStatic(int style) {
-        if ((style & LCARS.ES_STATIC) == 0) {
-            return false;
-        } else {
-            return true;
-        }
+        return (style & LCARS.ES_STATIC) != 0;
     }
 
     public static int getRectangleShape(int style) {

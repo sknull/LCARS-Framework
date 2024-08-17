@@ -238,7 +238,7 @@ public abstract class LCARSComponent extends JComponent implements MouseInputLis
             case LCARS.ES_LABEL_W:
             case LCARS.ES_LABEL_C:
             case LCARS.ES_LABEL_E:
-                textY = (int) (scaledArea.getBounds().height / 2 + fm.getAscent() / 2);
+                textY = scaledArea.getBounds().height / 2 + fm.getAscent() / 2;
                 break;
             default:
                 /**

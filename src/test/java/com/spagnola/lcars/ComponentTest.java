@@ -17,7 +17,7 @@ import java.awt.event.WindowEvent;
 
 public class ComponentTest {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LCARSCorner.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ComponentTest.class);
 
 
     public static void main(String[] args) {

@@ -273,11 +273,7 @@ public class LClockPanel extends LCARSPanel {
         lb = new LCARSButton("Mode Select", 10, 935,
                 LCARS.EF_BUTTON | LCARS.EC_YELLOW);
         lb.setName("Exit");
-        lb.setActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                nextMode();
-            }
-        });
+        lb.setActionListener(e -> nextMode());
         add(lb);
 
 
@@ -287,14 +283,8 @@ public class LClockPanel extends LCARSPanel {
         lb = new LCARSButton("Exit", 10, 1000,
                 LCARS.EF_BUTTON | LCARS.EC_ORANGE);
         lb.setName("Exit");
-        lb.setActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                exit();
-            }
-        });
+        lb.setActionListener(e -> exit());
         add(lb);
-
-
     }
 
 

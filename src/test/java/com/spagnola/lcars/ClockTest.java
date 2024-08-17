@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 
 public class ClockTest extends JFrame {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LCARSCorner.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ClockTest.class);
 
     LoginPanel loginPanel;
     ActionListener loginAction;
