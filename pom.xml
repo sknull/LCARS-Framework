@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <packaging>jar</packaging>
 
   <groupId>com.spagnola</groupId>
   <artifactId>lcars</artifactId>
-  <name>lcars</name>
   <version>1.0.0-SNAPSHOT</version>
-  <description>lcars API</description>
 
-  <properties>
-    <jdk.version>17</jdk.version>
-    <project.build.source>1.8</project.build.source>
-    <project.build.target>1.8</project.build.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
 
-    <version.junit>5.10.2</version.junit>
-    <kotlin.version>2.0.10</kotlin.version>
-  </properties>
+  <description>Kotlin Library, Calculate solar times like solar noon, sunrise, sunset, astronomical, nautical and civil
+    dawn/dusks
+  </description>
+  <url>https://github.com/thatsIch/LCARS-Framework</url>
+
+  <licenses>
+    <license>
+      <name>GNU Lesser General Public License v2.1</name>
+      <url>https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html</url>
+    </license>
+  </licenses>
 
   <distributionManagement>
     <repository>
@@ -31,18 +29,101 @@
     </repository>
   </distributionManagement>
 
+  <profiles>
+    <profile>
+      <id>github</id>
+      <repositories>
+        <repository>
+          <id>github</id>
+          <name>GitHub sknull Apache Maven Packages</name>
+          <url>https://maven.pkg.github.com/sknull/LCARS-Framework</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+        <repository>
+          <id>central</id>
+          <url>https://repo1.maven.org/maven2</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
+
+  <developers>
+    <developer>
+      <name>agent-P</name>
+      <organizationUrl>https://github.com/agent-P/LCARS-Framework</organizationUrl>
+    </developer>
+    <developer>
+      <name>sknull</name>
+      <roles>
+        <role>rework to kotlin</role>
+      </roles>
+      <email>s.knull@t-online.de</email>
+      <organization>sknull</organization>
+      <organizationUrl>https://github.com/sknull</organizationUrl>
+    </developer>
+  </developers>
+
+  <properties>
+    <jdk.version>18</jdk.version>
+    <project.build.source>18</project.build.source>
+    <project.build.target>18</project.build.target>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <kotlin.code.style>official</kotlin.code.style>
+
+    <version.kotlin.maven>1.9.23</version.kotlin.maven>
+    <version.kotlin.language>1.9</version.kotlin.language>
+    <version.jackson>2.16.2</version.jackson>
+    <version.junit>5.10.2</version.junit>
+    <version.assertj>3.24.2</version.assertj>
+
+    <!-- workaround for a bug in maven -->
+    <build-timestamp>${maven.build.timestamp}</build-timestamp>
+  </properties>
+
+  <!-- workaround for junit tests not being found within kotlin code -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>${version.junit}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
+    <!-- kotlin -->
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib</artifactId>
+      <version>${version.kotlin.maven}</version>
+    </dependency>
 
     <!-- logging -->
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
-      <version>1.5.4</version>
+      <version>1.4.14</version>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-core</artifactId>
-      <version>1.5.4</version>
+      <version>1.4.14</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -64,69 +145,32 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.assertj</groupId>
-      <artifactId>assertj-core</artifactId>
-      <version>3.24.2</version>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>${version.junit}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-stdlib-jdk8</artifactId>
-      <version>${kotlin.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-test</artifactId>
-      <version>${kotlin.version}</version>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>${version.assertj}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
 
   <build>
+    <sourceDirectory>src/main/kotlin</sourceDirectory>
+    <testSourceDirectory>src/test/kotlin</testSourceDirectory>
+
     <plugins>
-
-      <!-- attach sources -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <version>3.2.1</version>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <!-- testing -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.2.5</version>
-        <configuration>
-          <systemPropertyVariables>
-            <maven.home>${maven.home}</maven.home>
-          </systemPropertyVariables>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <version>3.2.5</version>
-      </plugin>
-
-      <!-- release management -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-release-plugin</artifactId>
-        <version>3.0.1</version>
-      </plugin>
       <plugin>
         <groupId>org.jetbrains.kotlin</groupId>
         <artifactId>kotlin-maven-plugin</artifactId>
-        <version>${kotlin.version}</version>
+        <version>${version.kotlin.maven}</version>
+        <configuration>
+          <languageVersion>${version.kotlin.language}</languageVersion>
+          <jvmTarget>${project.build.target}</jvmTarget>
+        </configuration>
         <executions>
           <execution>
             <id>compile</id>
@@ -134,12 +178,6 @@
             <goals>
               <goal>compile</goal>
             </goals>
-            <configuration>
-              <sourceDirs>
-                <source>src/main/java</source>
-                <source>target/generated-sources/annotations</source>
-              </sourceDirs>
-            </configuration>
           </execution>
           <execution>
             <id>test-compile</id>
@@ -149,42 +187,132 @@
             </goals>
           </execution>
         </executions>
-        <configuration>
-          <jvmTarget>${maven.compiler.target}</jvmTarget>
-        </configuration>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.11.0</version>
-        <executions>
-          <execution>
-            <id>default-compile</id>
-            <phase>none</phase>
-          </execution>
-          <execution>
-            <id>default-testCompile</id>
-            <phase>none</phase>
-          </execution>
-          <execution>
-            <id>compile</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>compile</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>testCompile</id>
-            <phase>test-compile</phase>
-            <goals>
-              <goal>testCompile</goal>
-            </goals>
-          </execution>
-        </executions>
         <configuration>
           <source>${project.build.source}</source>
           <target>${project.build.target}</target>
         </configuration>
+      </plugin>
+
+      <!-- attach sources -->
+      <!--plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>3.3.0</version>
+          <executions>
+              <execution>
+                  <id>attach-sources</id>
+                  <goals>
+                      <goal>jar</goal>
+                  </goals>
+              </execution>
+          </executions>
+      </plugin-->
+
+      <!-- KDoc -->
+
+      <!-- generate new KDoc -->
+      <plugin>
+        <groupId>org.jetbrains.dokka</groupId>
+        <artifactId>dokka-maven-plugin</artifactId>
+        <version>1.9.20</version>
+        <executions>
+          <execution>
+            <id>dokka-html</id>
+            <phase>package</phase>
+            <goals>
+              <goal>dokka</goal>
+            </goals>
+            <configuration>
+              <outputDir>${project.build.directory}/dokka</outputDir>
+              <includes>
+                <include>
+                  ${project.basedir}/src/main/kotlin/de/visualdigits/packages.md
+                </include>
+              </includes>
+            </configuration>
+          </execution>
+          <!--execution>
+              <id>dokka-gfm</id>
+              <phase>package</phase>
+              <goals>
+                  <goal>dokka</goal>
+              </goals>
+              <configuration>
+                  <dokkaPlugins>
+                      <plugin>
+                          <groupId>org.jetbrains.dokka</groupId>
+                          <artifactId>gfm-plugin</artifactId>
+                          <version>1.9.20</version>
+                      </plugin>
+                  </dokkaPlugins>
+                  <outputDir>${project.basedir}/docs/dokka</outputDir>
+                  <includes>
+                      <include>
+                          ${project.basedir}/src/main/kotlin/de/visualdigits/packages.md
+                      </include>
+                  </includes>
+              </configuration>
+          </execution-->
+        </executions>
+      </plugin>
+
+      <!-- build javadoc jar -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>test-jar</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>dokka-jar</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <classifier>dokka</classifier>
+              <classesDirectory>${project.build.directory}/dokka</classesDirectory>
+              <skipIfEmpty>true</skipIfEmpty>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- testing -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.1.2</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>3.1.2</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.eluder.coveralls</groupId>
+        <artifactId>coveralls-maven-plugin</artifactId>
+        <version>4.3.0</version>
+
+        <dependencies>
+          <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.1</version>
+          </dependency>
+        </dependencies>
       </plugin>
     </plugins>
   </build>
