@@ -1,0 +1,18 @@
+= LCARS-Framework
+:doctype: article
+:description: Project Documentation for LCARS framework
+:keywords: java, swing, LCARS
+:icons: font
+:toc:
+:toc-title: Contents
+:toclevels:10
+
+A java framework for building LCARS displays as one or more swing application. It extends <code>JComponent</code> to
+create LCARS components. It currently supports the following components:
+
+The test application, <code>com.spagnola.lcars.ClockTest.java</code> demonstrates how the components can be used.
+See the following image for visual of Component types and some of the color palette.
+
+== LCARS Clock Test Screen
+
+image:docs/LCARSClockTest.png[LCARS Component Test Screen]
