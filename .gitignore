@@ -9,3 +9,5 @@ Thumbs.db
 .settings
 .classpath
 .factorypath
+**/request.log
+**/server.log
