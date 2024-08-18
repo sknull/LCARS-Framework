@@ -17,19 +17,19 @@ class LCARSImageComponentTest {
 
         val image = BufferedImage(1920, 1080, BufferedImage.TYPE_INT_RGB)
 
-        val cornerTopLeft = LCARSImageCorner(
+        val corner = LCARSImageCorner(
             w = 1900,
             h = 1060,
             style = Style(
                 background = Color.black,
                 foreground = NamedColor.YELLOW.color,
-                orientation = Orientation.TOP_LEFT,
-                labelPosition = LabelPosition.CENTER
+                orientation = Orientation.BOTTOM_RIGHT,
+                labelPosition = LabelPosition.TOP_RIGHT
             ),
             text = "hello"
         ).draw()
 
-        image.createGraphics().drawImage(cornerTopLeft, 10, 10, null)
+        image.createGraphics().drawImage(corner, 10, 10, null)
 
         ImageIO.write(image, "png", File("c:/tmp/LCARS-Test.png"))
     }

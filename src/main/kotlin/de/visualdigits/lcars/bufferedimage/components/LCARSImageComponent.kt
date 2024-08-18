@@ -2,6 +2,7 @@ package de.visualdigits.lcars.bufferedimage.components
 
 import de.visualdigits.lcars.bufferedimage.type.LabelPosition
 import de.visualdigits.lcars.bufferedimage.type.Style
+import java.awt.Color
 import java.awt.Font
 import java.awt.FontMetrics
 import java.awt.Graphics2D
@@ -61,13 +62,13 @@ abstract class LCARSImageComponent(
         g2d.color = style.foreground
         g2d.font = font
 
-        setTextPosition()
         drawArea(g2d)?.also { area ->
             g2d.draw(area)
             g2d.fill(area)
         }
 
-        g2d.color = style.background
+        g2d.color = Color.white
+        setTextPosition()
         g2d.drawString(text, textX, textY)
 
         g2d.dispose()
