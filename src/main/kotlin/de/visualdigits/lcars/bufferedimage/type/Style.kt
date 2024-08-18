@@ -3,9 +3,13 @@ package de.visualdigits.lcars.bufferedimage.type
 import java.awt.Color
 
 data class Style(
-    val background: Color = Color.black,
-    val foreground: Color? = Color.white,
-    val labelPosition: LabelPosition = LabelPosition.CENTER,
-    val orientation: Orientation = Orientation.TOP_LEFT,
-    val buttonStyle: ButtonStyle = ButtonStyle.RND
+    var background: Color? = null,
+    var foreground: Color? = Color.white,
+    var labelColor: Color? = Color.white,
+    var labelPosition: LabelPosition = LabelPosition.CENTER_CENTER,
+    var labelSize: Int = 12,
+    var labelInsetX: Int = 10,
+    var labelInsetY: Int = 10,
+    var orientation: Orientation = Orientation.TOP_LEFT,
+    var buttonStyle: ButtonStyle = ButtonStyle.RND
 )

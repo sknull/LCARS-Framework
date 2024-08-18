@@ -2,24 +2,26 @@ package de.visualdigits.lcars.bufferedimage.components
 
 import de.visualdigits.lcars.bufferedimage.type.LabelPosition
 import de.visualdigits.lcars.bufferedimage.type.Style
+import java.awt.AlphaComposite
 import java.awt.Color
 import java.awt.Font
 import java.awt.FontMetrics
 import java.awt.Graphics2D
 import java.awt.RenderingHints
 import java.awt.geom.Area
-import java.awt.geom.Rectangle2D
 import java.awt.image.BufferedImage
 import java.io.File
+import kotlin.math.roundToInt
 
-abstract class LCARSImageComponent(
+@Suppress("UNCHECKED_CAST")
+abstract class LCARSImageComponent<T : LCARSImageComponent<T>>(
     val w: Int,
     val h: Int,
     val x: Int = 0,
     val y: Int = 0,
     val style: Style,
-    val text: String = "",
-): BufferedImage(w, h, TYPE_INT_RGB) {
+    val label: String = "",
+): BufferedImage(w, h, style.background?.let { TYPE_INT_RGB }?:TYPE_INT_ARGB ) {
 
     companion object {
 
@@ -38,74 +40,88 @@ abstract class LCARSImageComponent(
         )
     }
 
+    protected val g = graphics as Graphics2D
+
     protected val font: Font = Font.createFont(Font.TRUETYPE_FONT, File(ClassLoader.getSystemResource(LabelPosition_FONT_FILENAME).toURI()))
 
-    protected val g = createGraphics()
-
-    protected var textX: Int = 0
-
-    protected var textY: Int = 0
-
-    protected var textInsetX: Int = 0
-
-    protected var textInsetY: Int = 0
-
-    fun draw(): LCARSImageComponent {
+    fun draw(): T {
         if (isOpaque()) {
             g.color = style.background
             g.fillRect(0, 0, w, h)
         }
 
-        val g2d: Graphics2D = g.create() as Graphics2D
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON)
 
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON)
-        g2d.color = style.foreground
-        g2d.font = font
+//        drawCross()
 
-        drawArea(g2d)?.also { area ->
-            g2d.draw(area)
-            g2d.fill(area)
+        g.color = style.foreground
+
+        drawArea(g)?.also { area ->
+            g.composite = AlphaComposite.SrcOver
+            g.draw(area)
+            g.fill(area)
         }
 
-        g2d.color = Color.white
-        setTextPosition()
-        g2d.drawString(text, textX, textY)
+        val labelSize = determineLabelSize()
+        val f = g.font
+        g.font = Font(font.name, 0, labelSize)
+        determineLabelPosition(style.labelInsetX, style.labelInsetY)?.also { position -> drawLabel(position) }
+        g.font = f
 
-        g2d.dispose()
+        g.dispose()
 
-        return this
+        return this as T
+    }
+
+    private fun drawCross() {
+        g.color = Color.red
+        g.drawRect(0, 0, w - 1, h - 1)
+        g.drawLine((w / 2.0 - 1).roundToInt(), 0, (w / 2.0 - 1).roundToInt(), h)
+        g.drawLine(0, (h / 2.0 - 1).roundToInt(), w, (h / 2.0 - 1).roundToInt())
+        g.drawLine(0, 0, w, h)
+        g.drawLine(0, w, 0, h)
+    }
+
+    fun drawLabel(position: Pair<Int, Int>) {
+        val c = g.color
+        g.color = style.labelColor
+        g.drawString(label, position.first, position.second)
+        g.color = c
     }
 
     abstract fun drawArea(g2d: Graphics2D): Area?
 
+    protected open fun determineLabelSize(): Int {
+        return style.labelSize
+    }
 
-    protected open fun setTextPosition() {
-        val fm: FontMetrics = g.fontMetrics
-        fm.stringWidth(text)
-        val r: Rectangle2D = fm.getStringBounds(text, g)
+    protected open fun determineLabelInsets(labelSize: Int): Pair<Int, Int> {
+        return Pair(10, 10)
+    }
 
+    protected open fun determineLabelPosition(labelInsetX: Int, labelInsetY: Int): Pair<Int, Int>? {
+        val fontMetrics: FontMetrics = g.fontMetrics
+        val bounds = fontMetrics.getStringBounds(label, g)
 
-        when (style.labelPosition) {
-            LabelPosition.TOP_LEFT, LabelPosition.TOP, LabelPosition.TOP_RIGHT -> textY =
-                (fm.ascent + textInsetY).toInt()
-
-            LabelPosition.BOTTOM_LEFT, LabelPosition.BOTTOM, LabelPosition.BOTTOM_RIGHT -> textY =
-                (h - textInsetY).toInt()
-
-            LabelPosition.LEFT, LabelPosition.CENTER, LabelPosition.RIGHT -> textY =
-                h / 2 + fm.ascent / 2
+        val y = when (style.labelPosition) {
+            LabelPosition.TOP_LEFT, LabelPosition.TOP_CENTER, LabelPosition.TOP_RIGHT ->
+                (labelInsetY + bounds.height + bounds.y / 2.0).roundToInt()
+            LabelPosition.BOTTOM_LEFT, LabelPosition.BOTTOM_CENTER, LabelPosition.BOTTOM_RIGHT ->
+                (h - labelInsetY - bounds.height - bounds.y).roundToInt()
+            LabelPosition.CENTER_LEFT, LabelPosition.CENTER_CENTER, LabelPosition.CENTER_RIGHT ->
+                ((h - bounds.height) / 2.0 - bounds.y).roundToInt()
         }
 
-        when (style.labelPosition) {
-            LabelPosition.TOP_LEFT, LabelPosition.LEFT, LabelPosition.BOTTOM_LEFT -> textX =
-                (textInsetX).toInt()
-
-            LabelPosition.TOP_RIGHT, LabelPosition.RIGHT, LabelPosition.BOTTOM_RIGHT -> textX =
-                (w - r.width - textInsetX).toInt()
-
-            LabelPosition.TOP, LabelPosition.CENTER, LabelPosition.BOTTOM -> textX =
-                (w / 2 - r.width / 2).toInt()
+        val x = when (style.labelPosition) {
+            LabelPosition.TOP_LEFT, LabelPosition.CENTER_LEFT, LabelPosition.BOTTOM_LEFT ->
+                labelInsetX
+            LabelPosition.TOP_RIGHT, LabelPosition.CENTER_RIGHT, LabelPosition.BOTTOM_RIGHT ->
+                (w - labelInsetX - bounds.width).roundToInt()
+            LabelPosition.TOP_CENTER, LabelPosition.CENTER_CENTER, LabelPosition.BOTTOM_CENTER ->
+                ((w - bounds.width) / 2.0).roundToInt()
         }
+
+        return Pair(x, y)
     }
 
     fun isOpaque(): Boolean = OPAQUE_IMAGE_TYPES.contains(type)
